@@ -1,5 +1,15 @@
 # frozen_string_literal: true
 module ApplicationHelper
+  def react_component(component_name, **props)
+    content_tag(
+      "div",
+      data: {
+        react_component: component_name,
+        props: props.to_json,
+      }
+    ) { "" }
+  end
+
   def setup_search_form(builder)
     fields = builder.grouping_fields builder.object.new_grouping,
       object_name: 'new_object_name', child_index: 'new_grouping' do |f|
